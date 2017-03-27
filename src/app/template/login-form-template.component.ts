@@ -6,7 +6,7 @@ import { User }      from '../shared/user';
 
 const userEmail = 'test@test.pl';
 const userPassword = 'Password1';
-const fakeDelay = 3000;
+const fakeDelay = 2000;
 const fakeRandomId = 42;
 
 @Component({
@@ -24,6 +24,7 @@ export class LoginFormTemplateComponent implements AfterViewChecked {
 
   onSubmit() {
     this.submitting = true;
+    // faking server response delay
     setTimeout(() => {
       this.submitting = false;
       this.submitted = true;
