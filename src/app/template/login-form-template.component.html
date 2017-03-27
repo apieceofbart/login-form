@@ -1,0 +1,66 @@
+<div class="container form-container">
+  <div [hidden]="successfull">
+    <h1>Login</h1>
+    <form #loginForm="ngForm"  *ngIf="active"  (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+
+        <input type="email" id="email" class="form-control"
+          placeholder="email"
+          required validEmail
+          [disabled]="submitting"
+          name="email" [(ngModel)]="user.email" >
+
+        <div *ngIf="formErrors.email" class="alert alert-danger">
+          {{ formErrors.email }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <input type="password" id="password" class="form-control"
+          placeholder="password"
+          required validPassword
+          [disabled]="submitting"
+          name="password" [(ngModel)]="user.password" >
+
+        <div *ngIf="formErrors.password" class="alert alert-danger">
+          {{ formErrors.password }}
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <label for="remember">
+          <input type="checkbox" id="remember"
+               name="remember"
+               [disabled]="submitting"
+               [(ngModel)]="user.remember" >Remember me
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-default" [class.submitting]="submitting"
+         [disabled]="!loginForm.form.valid">
+         <span *ngIf="submitting">Submitting<span class="loader"></span></span>
+         <span *ngIf="!submitting">Submit</span>
+       </button>
+    </form>
+
+  </div>
+
+  <div class="alert alert-response" *ngIf="submitted && !successfull">
+    <span>Invalid email or password</span>
+  </div>
+
+  <div class="success-box" *ngIf="submitted && successfull">
+    <span>Login successful!</span>
+  </div>
+
+</div>
+
+
+<!--
+Copyright 2017 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
